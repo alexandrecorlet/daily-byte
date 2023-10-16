@@ -5,13 +5,14 @@
 # Time complexity O(n) | Space complexity O(1)
 # where n is the size of the string
 def valid_palindrome(s):
-    i, j = 0, len(s) - 1
+    n = len(s)
+    i, j = 0, n - 1
     while i <= j:
-        while not s[i].isalpha():
+        while i < n and not s[i].isalpha():
             i += 1
-        while not s[j].isalpha():
+        while j > 0 and not s[j].isalpha():
             j -= 1
-        if s[i].lower() != s[j].lower():
+        if i >= n  or j < 0 or s[i].lower() != s[j].lower():
             return False
         i += 1
         j -= 1
@@ -26,6 +27,7 @@ def main():
     assert valid_palindrome("....a")
     assert valid_palindrome("....a.")
     assert valid_palindrome("a")
+    assert not valid_palindrome("...")
     print("OK passed all tests!")
 
 
