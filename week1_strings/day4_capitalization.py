@@ -29,7 +29,6 @@ def valid_capitalization(s):
         return True
 
     return False
-    # return num_upper == len(s) or (num_upper == 1 and s[0].isupper()) or num_upper == 0
 
 
 def main():
