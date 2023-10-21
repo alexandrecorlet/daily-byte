@@ -10,25 +10,18 @@ def LCP(strings):
     """
     if not strings:
         return ""
-
-    # assume the entire 0-th string is the longest common prefix
-    lcp = strings[0]          
-    best_lcp = len(lcp)
-    # Compute the lcp
-    for s in strings:
-        curr_lcp = 0
-        i = 0
-        while i < min(best_lcp, len(s)):
-            if s[i] == lcp[i]:
-                curr_lcp += 1
-            else:
-                break
-            i += 1
-        best_lcp = min(best_lcp, curr_lcp)
     
-    return lcp[:best_lcp] if best_lcp else ""
-        
-        
+    ans = strings[0]
+    i = len(ans)
+    for s in strings:
+        j = 0 
+        for c1, c2 in zip(ans, s):
+            if c1 == c2:
+                j += 1
+        i = min(i, j)
+
+    return ans[:i]
+
 
 def main():
     # Test cases:
