@@ -21,7 +21,7 @@ def binary_sum(a, b):
         carry, bit = divmod(bit_a + bit_b + carry, 2)
         result = str(bit) + result 
     if carry:
-        result = str(carry) + result
+        result = "1" + result
 
     return result
 
