@@ -9,31 +9,24 @@
 def valid_palindrome_with_removal(s):
 
     n = len(s)
-    valid = True
-    removal = 1
+    valid = removal = True 
     i, j = 0, n - 1
     while i <= j and valid:
 
         if s[i] != s[j]:
-
-            if removal == 1:
-                removal = 0
-                if i + 1 < n and s[i+1] == s[j]:
-                    i += 1
-                    continue
-                elif j - 1 > -1 and s[j-1] == s[i]:
-                    j -= 1
-                    continue
-                else:
-                    valid = False
-
-            else:
-                valid = False
+            if not removal:
+                return False 
+            removal = False
+            if i+1 < n and s[i+1] == s[j]:
+                i += 1
+            elif j-1 >= 0 and s[j-1] == s[i]:
+                j -= 1
+            continue
 
         i += 1
         j -= 1
 
-    return valid 
+    return True
          
 
 def main():
