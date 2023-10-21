@@ -6,32 +6,24 @@
 # where n is the size of the binary sting a, and m is the 
 # the size of the binary string b
 def binary_sum(a, b):
-    n = len(a)
-    m = len(b)
-    if n < m:
-        a, b = b, a
-        n, m = m, n
 
-    result = [] 
-    j = n - 1
+    # Ensure both binary strings have the same length 
+    max_len = max(len(a), len(b))
+    a = a.zfill(max_len)
+    b = b.zfill(max_len)
+
+    # Compute sum
+    result = ""
     carry = 0
-    for i in range(m - 1, -1, -1):
-        bit_a = int(a[j])
-        bit_b = int(b[i])
-        result.append(str(bit_a ^ bit_b ^ carry))
-        carry = bit_a & bit_b
-        j -= 1
-
-    while j > -1:
-        bit_a = int(a[j])
-        result.append(str(bit_a ^ carry))
-        carry &= bit_a
-        j -= 1
-
+    for bit_a, bit_b in zip(a[::-1], b[::-1]):
+        bit_a = int(bit_a)
+        bit_b = int(bit_b)
+        carry, bit = divmod(bit_a + bit_b + carry, 2)
+        result = str(bit) + result 
     if carry:
-        result.append("1")
-    
-    return "".join(result[::-1])
+        result = str(carry) + result
+
+    return result
 
 
 def main():
