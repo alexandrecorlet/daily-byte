@@ -9,8 +9,8 @@ def two_sum(numbers, k):
 
     seen = set()
     for number in numbers:
-        diff = abs(number - k) 
-        if diff in seen:
+        complement = k - number 
+        if complement in seen:
             return True
         seen.add(number)
 
