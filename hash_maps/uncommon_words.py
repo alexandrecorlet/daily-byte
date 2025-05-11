@@ -13,12 +13,8 @@ def uncommon_words(s, t):
     t = t.split()
     
     # Mark words that have been seen
-    seenInS = set()
-    seenInT = set()
-    for word in s:
-        seenInS.add(word)
-    for word in t:
-        seenInT.add(word)
+    seenInS = set(s)
+    seenInT = set(t)
 
     # Find uncommon words
     uncommon = []
